@@ -1,11 +1,22 @@
 package com.acuencadev.critterchronologer.user;
 
+import com.acuencadev.critterchronologer.pet.Pet;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Table
 @Entity
 public class Customer extends Person {
+
+    private String phoneNumber;
+
+    private String notes;
+
+    @OneToMany(targetEntity = Pet.class)
+    private List<Pet> pets;
 
     public Customer() {
     }
@@ -15,10 +26,6 @@ public class Customer extends Person {
         this.phoneNumber = phoneNumber;
         this.notes = notes;
     }
-
-    private String phoneNumber;
-
-    private String notes;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -34,5 +41,17 @@ public class Customer extends Person {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public List<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(List<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public void addPet(Pet pet) {
+        this.pets.add(pet);
     }
 }
