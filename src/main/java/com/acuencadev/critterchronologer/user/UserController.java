@@ -21,11 +21,13 @@ public class UserController {
 
     private final ModelMapper modelMapper;
     private final CustomerService customerService;
+    private final EmployeeService employeeService;
 
     @Autowired
-    public UserController(ModelMapper modelMapper, CustomerService customerService) {
+    public UserController(ModelMapper modelMapper, CustomerService customerService, EmployeeService employeeService) {
         this.modelMapper = modelMapper;
         this.customerService = customerService;
+        this.employeeService = employeeService;
     }
 
     @PostMapping("/customer")
@@ -53,12 +55,16 @@ public class UserController {
 
     @PostMapping("/employee")
     public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        Employee employee = dtoToEntity(employeeDTO);
+
+        return entityToDto(employeeService.save(employee));
     }
 
     @PostMapping("/employee/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        Employee employee = employeeService.getOne(employeeId);
+
+        return entityToDto(employee);
     }
 
     @PutMapping("/employee/{employeeId}")
@@ -77,5 +83,13 @@ public class UserController {
 
     private CustomerDTO entityToDto(Customer customer) {
         return modelMapper.map(customer, CustomerDTO.class);
+    }
+
+    private Employee dtoToEntity(EmployeeDTO employeeDTO) {
+        return modelMapper.map(employeeDTO, Employee.class);
+    }
+
+    private EmployeeDTO entityToDto(Employee employee) {
+        return modelMapper.map(employee, EmployeeDTO.class);
     }
 }
