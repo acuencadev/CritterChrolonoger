@@ -1,7 +1,9 @@
-package com.acuencadev.critterchronologer.pet;
+package com.acuencadev.critterchronologer.service;
 
-import com.acuencadev.critterchronologer.user.Customer;
-import com.acuencadev.critterchronologer.user.CustomerRepository;
+import com.acuencadev.critterchronologer.model.Customer;
+import com.acuencadev.critterchronologer.model.Pet;
+import com.acuencadev.critterchronologer.repository.PetRepository;
+import com.acuencadev.critterchronologer.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

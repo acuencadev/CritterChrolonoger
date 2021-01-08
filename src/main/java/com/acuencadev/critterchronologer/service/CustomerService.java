@@ -1,5 +1,7 @@
-package com.acuencadev.critterchronologer.user;
+package com.acuencadev.critterchronologer.service;
 
+import com.acuencadev.critterchronologer.model.Customer;
+import com.acuencadev.critterchronologer.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

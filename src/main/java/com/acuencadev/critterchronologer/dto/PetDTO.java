@@ -1,4 +1,6 @@
-package com.acuencadev.critterchronologer.pet;
+package com.acuencadev.critterchronologer.dto;
+
+import com.acuencadev.critterchronologer.model.PetType;
 
 import java.time.LocalDate;
 

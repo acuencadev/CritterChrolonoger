@@ -1,4 +1,4 @@
-package com.acuencadev.critterchronologer.pet;
+package com.acuencadev.critterchronologer.model;
 
 /**
  * A example list of pet type metadata that could be included on a request to create a pet.

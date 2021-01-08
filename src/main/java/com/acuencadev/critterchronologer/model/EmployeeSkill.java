@@ -1,4 +1,4 @@
-package com.acuencadev.critterchronologer.user;
+package com.acuencadev.critterchronologer.model;
 
 /**
  * A example list of employee skills that could be included on an employee or a schedule request.

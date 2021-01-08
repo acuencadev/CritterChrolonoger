@@ -1,5 +1,7 @@
-package com.acuencadev.critterchronologer.user;
+package com.acuencadev.critterchronologer.service;
 
+import com.acuencadev.critterchronologer.model.Employee;
+import com.acuencadev.critterchronologer.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

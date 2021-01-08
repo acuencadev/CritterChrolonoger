@@ -1,4 +1,4 @@
-package com.acuencadev.critterchronologer.user;
+package com.acuencadev.critterchronologer.dto;
 
 import java.util.List;
 

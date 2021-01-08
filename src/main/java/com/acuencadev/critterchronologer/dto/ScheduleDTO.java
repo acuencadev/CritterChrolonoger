@@ -1,6 +1,6 @@
-package com.acuencadev.critterchronologer.schedule;
+package com.acuencadev.critterchronologer.dto;
 
-import com.acuencadev.critterchronologer.user.EmployeeSkill;
+import com.acuencadev.critterchronologer.model.EmployeeSkill;
 
 import java.time.LocalDate;
 import java.util.List;

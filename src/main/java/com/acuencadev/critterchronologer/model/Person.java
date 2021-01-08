@@ -1,4 +1,4 @@
-package com.acuencadev.critterchronologer.user;
+package com.acuencadev.critterchronologer.model;
 
 import org.hibernate.annotations.Nationalized;
 

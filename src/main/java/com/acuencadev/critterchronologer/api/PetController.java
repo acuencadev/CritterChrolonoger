@@ -1,5 +1,8 @@
-package com.acuencadev.critterchronologer.pet;
+package com.acuencadev.critterchronologer.api;
 
+import com.acuencadev.critterchronologer.dto.PetDTO;
+import com.acuencadev.critterchronologer.model.Pet;
+import com.acuencadev.critterchronologer.service.PetService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

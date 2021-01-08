@@ -1,5 +1,6 @@
-package com.acuencadev.critterchronologer.pet;
+package com.acuencadev.critterchronologer.repository;
 
+import com.acuencadev.critterchronologer.model.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

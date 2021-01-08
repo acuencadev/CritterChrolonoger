@@ -1,5 +1,6 @@
-package com.acuencadev.critterchronologer.schedule;
+package com.acuencadev.critterchronologer.api;
 
+import com.acuencadev.critterchronologer.dto.ScheduleDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

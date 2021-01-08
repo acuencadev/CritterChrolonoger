@@ -1,6 +1,5 @@
-package com.acuencadev.critterchronologer.pet;
+package com.acuencadev.critterchronologer.model;
 
-import com.acuencadev.critterchronologer.user.Customer;
 import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
