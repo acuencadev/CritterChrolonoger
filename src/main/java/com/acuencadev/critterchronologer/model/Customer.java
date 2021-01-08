@@ -1,7 +1,5 @@
 package com.acuencadev.critterchronologer.model;
 
-import com.acuencadev.critterchronologer.pet.Pet;
-
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
