@@ -1,8 +1,11 @@
 package com.acuencadev.critterchronologer.user;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -16,14 +19,31 @@ import java.util.Set;
 @RequestMapping("/user")
 public class UserController {
 
+    private final ModelMapper modelMapper;
+    private final CustomerService customerService;
+
+    @Autowired
+    public UserController(ModelMapper modelMapper, CustomerService customerService) {
+        this.modelMapper = modelMapper;
+        this.customerService = customerService;
+    }
+
     @PostMapping("/customer")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
-        throw new UnsupportedOperationException();
+        Customer customer = dtoToEntity(customerDTO);
+
+        return entityToDto(customerService.save(customer));
     }
 
     @GetMapping("/customer")
     public List<CustomerDTO> getAllCustomers(){
-        throw new UnsupportedOperationException();
+        List<CustomerDTO> customerDTOList = new ArrayList<>();
+
+        for (Customer customer : customerService.getAll()) {
+            customerDTOList.add(entityToDto(customer));
+        }
+
+        return customerDTOList;
     }
 
     @GetMapping("/customer/pet/{petId}")
@@ -51,4 +71,11 @@ public class UserController {
         throw new UnsupportedOperationException();
     }
 
+    private Customer dtoToEntity(CustomerDTO customerDTO) {
+        return modelMapper.map(customerDTO, Customer.class);
+    }
+
+    private CustomerDTO entityToDto(Customer customer) {
+        return modelMapper.map(customer, CustomerDTO.class);
+    }
 }
