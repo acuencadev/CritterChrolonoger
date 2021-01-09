@@ -5,12 +5,11 @@ import org.hibernate.annotations.Nationalized;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Table
 @Entity
 public class Pet {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private PetType type;
 
@@ -20,7 +19,7 @@ public class Pet {
     private LocalDate birthDate;
     private String notes;
 
-    @ManyToOne(targetEntity = Customer.class, optional = false)
+    @ManyToOne
     private Customer customer;
 
     public Pet() {

@@ -1,11 +1,10 @@
 package com.acuencadev.critterchronologer.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.util.List;
 
-@Table
 @Entity
 public class Customer extends Person {
 
@@ -13,7 +12,7 @@ public class Customer extends Person {
 
     private String notes;
 
-    @OneToMany(targetEntity = Pet.class)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Pet> pets;
 
     public Customer() {

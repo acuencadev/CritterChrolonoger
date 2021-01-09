@@ -2,11 +2,9 @@ package com.acuencadev.critterchronologer.model;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.time.DayOfWeek;
 import java.util.Set;
 
-@Table
 @Entity
 public class Employee extends Person {
 
