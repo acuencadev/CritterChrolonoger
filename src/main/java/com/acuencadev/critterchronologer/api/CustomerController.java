@@ -2,6 +2,7 @@ package com.acuencadev.critterchronologer.api;
 
 import com.acuencadev.critterchronologer.dto.CustomerDTO;
 import com.acuencadev.critterchronologer.model.Customer;
+import com.acuencadev.critterchronologer.model.Pet;
 import com.acuencadev.critterchronologer.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user/customer")
@@ -34,7 +36,8 @@ public class CustomerController {
     public List<CustomerDTO> getAllCustomers(){
         List<CustomerDTO> customerDTOList = new ArrayList<>();
 
-        for (Customer customer : customerService.getAll()) {
+        List<Customer> customers = customerService.getAll();
+        for (Customer customer : customers) {
             customerDTOList.add(entityToDto(customer));
         }
 
@@ -47,10 +50,20 @@ public class CustomerController {
     }
 
     private Customer dtoToEntity(CustomerDTO customerDTO) {
-        return modelMapper.map(customerDTO, Customer.class);
+        Customer customer = modelMapper.map(customerDTO, Customer.class);
+
+        return customer;
     }
 
     private CustomerDTO entityToDto(Customer customer) {
-        return modelMapper.map(customer, CustomerDTO.class);
+        CustomerDTO customerDTO = modelMapper.map(customer, CustomerDTO.class);
+
+        if (customer.getPets() == null) {
+            customer.setPets(new ArrayList<>());
+        }
+
+        customerDTO.setPetIds(customer.getPets().stream().map(Pet::getId).collect(Collectors.toList()));
+
+        return customerDTO;
     }
 }
