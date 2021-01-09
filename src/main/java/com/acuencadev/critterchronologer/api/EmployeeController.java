@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -26,28 +27,35 @@ public class EmployeeController
         this.employeeService = employeeService;
     }
 
-    @PostMapping("/employee")
+    @PostMapping
     public EmployeeDTO saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
         Employee employee = dtoToEntity(employeeDTO);
 
         return entityToDto(employeeService.save(employee));
     }
 
-    @PostMapping("/employee/{employeeId}")
+    @PostMapping("/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable long employeeId) {
         Employee employee = employeeService.getOne(employeeId);
 
         return entityToDto(employee);
     }
 
-    @PutMapping("/employee/{employeeId}")
+    @PutMapping("/{employeeId}")
     public void setAvailability(@RequestBody Set<DayOfWeek> daysAvailable, @PathVariable long employeeId) {
-        throw new UnsupportedOperationException();
+        employeeService.setAvailability(daysAvailable, employeeId);
     }
 
-    @GetMapping("/employee/availability")
+    @GetMapping("/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
-        throw new UnsupportedOperationException();
+        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+
+        List<Employee> employees = employeeService.getAllByService(employeeDTO.getDate(), employeeDTO.getSkills());
+        for (Employee employee : employees) {
+            employeeDTOList.add(entityToDto(employee));
+        }
+
+        return employeeDTOList;
     }
 
     private Employee dtoToEntity(EmployeeDTO employeeDTO) {
