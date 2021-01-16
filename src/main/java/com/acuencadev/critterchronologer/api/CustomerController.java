@@ -46,7 +46,9 @@ public class CustomerController {
 
     @GetMapping("/pet/{petId}")
     public CustomerDTO getOwnerByPet(@PathVariable long petId){
-        throw new UnsupportedOperationException();
+        Customer customer = customerService.getCustomerByPetId(petId);
+
+        return entityToDto(customer);
     }
 
     private Customer dtoToEntity(CustomerDTO customerDTO) {
