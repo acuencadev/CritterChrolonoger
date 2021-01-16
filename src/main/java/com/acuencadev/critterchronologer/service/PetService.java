@@ -26,7 +26,12 @@ public class PetService {
 
         pet.setCustomer(customer);
 
-        return petRepository.save(pet);
+        Pet returnedPet = petRepository.save(pet);
+        Customer returnedCustomer = returnedPet.getCustomer();
+
+        returnedCustomer.addPet(returnedPet);
+
+        return returnedPet;
     }
 
     public Pet getOne(Long id) {
