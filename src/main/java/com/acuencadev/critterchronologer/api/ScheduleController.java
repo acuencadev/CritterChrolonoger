@@ -88,6 +88,8 @@ public class ScheduleController {
     private Schedule dtoToEntity(ScheduleDTO scheduleDTO) {
         Schedule schedule = modelMapper.map(scheduleDTO, Schedule.class);
 
+        schedule.setSkills(scheduleDTO.getActivities());
+
         return schedule;
     }
 
