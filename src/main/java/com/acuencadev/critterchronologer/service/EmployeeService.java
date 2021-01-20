@@ -34,7 +34,15 @@ public class EmployeeService {
     }
 
     public List<Employee> getAllByService(LocalDate date, Set<EmployeeSkill> skills) {
-        return employeeRepository.findAllByDaysAvailableAndSkillsIn(date.getDayOfWeek(), skills);
+        List<Employee> employees = employeeRepository.findAllByDaysAvailable(date.getDayOfWeek());
+
+        for (Employee employee: employees) {
+            if (!employee.getSkills().containsAll(skills)) {
+                employees.remove(employee);
+            }
+        }
+
+        return employees;
     }
 
     public void setAvailability(Set<DayOfWeek> days, Long id) {

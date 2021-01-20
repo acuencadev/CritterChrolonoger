@@ -1,6 +1,8 @@
 package com.acuencadev.critterchronologer.api;
 
 import com.acuencadev.critterchronologer.dto.ScheduleDTO;
+import com.acuencadev.critterchronologer.model.Employee;
+import com.acuencadev.critterchronologer.model.Pet;
 import com.acuencadev.critterchronologer.model.Schedule;
 import com.acuencadev.critterchronologer.service.ScheduleService;
 import org.modelmapper.ModelMapper;
@@ -91,6 +93,20 @@ public class ScheduleController {
 
     private ScheduleDTO entityToDto(Schedule schedule) {
         ScheduleDTO scheduleDTO = modelMapper.map(schedule, ScheduleDTO.class);
+
+        List<Long> petIds = new ArrayList<>();
+        for (Pet pet: schedule.getPets()) {
+            petIds.add(pet.getId());
+        }
+
+        List<Long> employeeIds = new ArrayList<>();
+        for (Employee employee: schedule.getEmployees()) {
+            employeeIds.add(employee.getId());
+        }
+
+        scheduleDTO.setPetIds(petIds);
+        scheduleDTO.setEmployeeIds(employeeIds);
+        scheduleDTO.setActivities(schedule.getSkills());
 
         return scheduleDTO;
     }
